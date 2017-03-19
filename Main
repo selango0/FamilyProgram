@@ -1,0 +1,141 @@
+#include "Family.h"
+#include<iostream>
+#include <vector>
+#include <string>
+
+
+using namespace std; 
+
+void printMenu();
+int getInput();
+int main()
+{
+	vector<Family*> mylist;
+	bool fin = false;
+	int selection;
+		
+	do
+	{
+		printMenu();
+		selection = getInput();
+
+		switch (selection)
+		{
+		case 1:
+			addFamily(mylist);
+			break;
+
+
+		case 2:
+			char* name;
+			cout << "Enter the Name to Delete: ";
+			cin >> name;
+			deleteFamily(myList, name);
+			break;
+
+		case 3:
+			char* name;
+			cout << "Enter Family Last name: ";
+			cin >> name;
+			printFamily(mylist, name);
+			break;
+
+		case 4:
+			printAll(mylist);
+			break;
+
+		case 5:
+			if (!myList.empty())
+			{
+				cout << myList[0].getName() << " says bye!\n";
+			}
+			fin = true;
+			break;
+		}
+
+		return 0;
+	}
+
+void printAll(vector<Family*> list) {
+	for (size_t i = 0; i < myList.size(); i++)
+	{
+		cout << "\nFamily #: " << i;
+		cout << "\nName: " << myList[i].getName();
+		cout << "\nAge: " << myList[i].getAge() << endl << endl;
+	}
+	
+}
+void printFamily(vector <Family*> list, char * n) {
+	
+
+			cout << "Name: " << (*it)->getName() << endl;
+			
+		
+	//if wrong name
+	cout << "Not found" << endl;
+
+void deleteFamily(vector <Family*> list, char * n) {
+	
+
+	myList.erase(myList.begin() + name); 
+
+
+	cout << "Not found" << endl;
+}
+void addFamily(vector <Family*> list) {
+
+	Person* p = new Person;
+	Family* f = new Family;
+	char* name;
+	int numOfP;
+	cout << "Enter Name :";
+	cin >> name;
+	f->setName(name);
+	cout << "Enter Number of Parent :";
+	cin >> numOfP;
+	for (int i = 0;i<numOfP;i++) {
+		char* fname;
+		char* lname;
+		int age;
+		cout << "Enter Parent First Name :";
+		cin >> fname;
+		cout << "Enter Parent Last Name :";
+		cin >> lname;
+		cout << "Enter Parent Age :";
+		cin >> age;
+		f->setParent(fname, lname, age, i);
+	}
+	cout << "Enter Number of Child :";
+	cin >> numOfP;
+	for (int i = 0;i<numOfP;i++) {
+		char* fname;
+		char* lname;
+		int age;
+		cout << "Enter Child First Name :";
+		cin >> fname;
+		cout << "Enter Child Last Name :";
+		cin >> lname;
+		cout << "Enter Child Age :";
+		cin >> age;
+		f->setChildren(fname, lname, age, i);
+	}
+	myList.push_back(f); //not sure if this is right
+}
+
+void printMenu() {
+
+	cout << "\n 1.Add Family " << endl;
+	cout << " 2. Delete Family By Last Name " << endl;
+	cout << " 3. Display Families " << endl;
+	cout << " 4. Display All Famillies " << endl;
+	cout << " 5. Quit" << endl;	
+	
+}
+
+int getInput()
+{
+	int choice;
+	cout << "\nEnter a number to select an option. \n";
+	cin >> choice;
+	return choice;
+}
