@@ -19,7 +19,7 @@ class Family
 {
 private:
 	char* name;
-	Person Parents[2];
+	Person Parent[2];
 	Person Children[30];
 	
 	
