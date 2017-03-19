@@ -1,4 +1,3 @@
-
 #include "Family.h"
 #include<iostream>
 #include <vector>
@@ -9,14 +8,15 @@ using namespace std;
 
 void printMenu();
 int getInput();
-void addFamily(vector<Family> &mylist);
-void printAll(vector<Family> &mylist);
-void printFamily(vector<Family> &mylist, char * n);
-void deleteFamily(vector<Family> &mylist, char * n);
+void addFamily(vector<Family> &myList);
+void printAll(vector<Family> &myList);
+void printFamily(vector<Family> &myList, char name[30]);
+void deleteFamily(vector<Family> &myList, char n[30]);
 
 int main()
 {
-	vector<Family> mylist;
+	
+	vector<Family> myList;
 	bool fin = false;
 	int selection;
 
@@ -30,7 +30,7 @@ int main()
 		{
 		case 1:
 		{
-			addFamily(mylist);
+			addFamily(myList);
 			break;
 		}
 
@@ -49,13 +49,13 @@ int main()
 			cout << "Enter Family Last name: ";
 			cin.ignore(100, '\n');
 			cin >> name;
-			printFamily(mylist, name);
+			printFamily(myList, name);
 			break;
 		}
 
 		case 4:
 		{
-			printAll(mylist);
+			printAll(myList);
 			break;
 		}
 
@@ -75,60 +75,71 @@ int main()
 	}
 
 
-	void printAll(vector<Family> myList) {
+	void printAll(vector<Family>&myList) {
 		for (size_t i = 0; i < myList.size(); i++)
 		{
 			cout << "\nFamily #: " << (i + 1);
 			cout << "\nName: " << myList[i].getName();
 
-			Person parents = myList[i].getParents();
-			Person children = myList[i].getChildren();
+			Person parents = myList[i].getParents();      //getter method for getting parents List
+			Person children = myList[i].getChildren();    //Gettter method for getting children list
 
-			for (int j = 0; j < myList[i].getParents().size(); j++) {
+			for (int j = 0; j < myList.size(); j++) {
 				cout << "\nParent " << j + 1 << endl;
-				cout << "\nName " << parents[j].FN << " " << parents[j].LN << endl;
+				cout << "\nName " << parents[j].firstName << " " << parents[j].lastName << endl;
 				cout << "\nAge: " << parents[j].age << endl;
 			}
 			for (int j = 0; j < children.size(); j++) {
 				cout << "\nChild " << j + 1 << endl;
-				cout << "\nName " << children[j].FN << " " << children[j].LN << endl;
+				cout << "\nName " << children[j].firstName << " " << children[j].lastName << endl;
 				cout << "\nAge: " << children[j].age << endl;
 
 			}
 		}
 	}
-	void printFamily(vector <Family> &myList, char * n) {
+	void printFamily(vector <Family> &myList, char name[30]) {
 		for (int i = 0; i < myList.size(); i++)
 		{
-
-			cout << "\nFamily #: " << (i + 1);
-			cout << "\nName: " << myList[i].getName();
-
-			Parents = myList[i].getName();
-			Children = myList[i].getChildren();
-
-			for (int j = 0; j < myList[i].size(); j++) {
+			if (myList[i].getName() == name) {
+				cout << "Name: " << myList[i].getName() << endl;
+				Person parents = myList[i].getParents();  //getter method for getting parents List
+				Person children = myList[i].getChildren(); //Gettter method for getting children list
+			}
+			//loop through array of parents
+			for (int j = 0; j < parents.size(); j++) {
 				cout << "\nParent " << j + 1 << endl;
-				cout << "\nName " << parents[j].FN << " " << parents[j].LN << endl;
+				cout << "\nName " << parents[j].firstName << " " << parents[j].lastName << endl;
 				cout << "\nAge: " << parents[j].age << endl;
 			}
+			//loop through array of children
 			for (int j = 0; j < children.size(); j++) {
 				cout << "\nChild " << j + 1 << endl;
-				cout << "\nName " << children[j].FN << " " << children[j].LN << endl;
+				cout << "\nName " << children[j].firstName << " " << children[j].lastName << endl;
 				cout << "\nAge: " << children[j].age << endl;
 
 			}
+			return;
 		}
 
 		cout << "Not found" << endl;
 	}
-void deleteFamily(vector <Family> &myList, char * n) {
+void deleteFamily(vector <Family> &myList, char name[30]) {
 	
-	for (vector<Family> &myList )
-	myList.erase(myList.begin() + name); 
+	for (size_t i = 0; i < myList.size(); i++)
+	{
+		if (myList[i].getName() == name)
+		{
+			myList.erase(myList.begin() + i);
+			
+		}
+
+		else
+		{
+			cout << "Not found" << endl;
+		}
+	}
 
 
-	cout << "Not found" << endl;
 }
 void addFamily(vector <Family> &myList) {
 
@@ -197,3 +208,4 @@ int getInput()
 	cin >> choice;
 	return choice;
 }
+
