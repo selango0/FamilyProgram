@@ -11,19 +11,23 @@ void Family::setName(char n[]) {
 char* Family::getName() {
 	return name;
 }
-void Family::setParent(char FN[], char LN[], int a, int i) {
+vector<Person> Family::getParents() {
+	return Parent;
+}
+vector<Person> Family::getChildren() {
+	return Children;
+}
+void Family::setParent(char FN[], char LN[], int a) {
 	Parent[i].FN = FN;
 	Parent[i].LN = LN;
 	Parent[i].age = a;
 }
-void Family::setChildren(char FN[], char LN[], int a, int i) {
+void Family::setChildren(char FN[], char LN[], int a) {
+	Person child;
 	Children[i].FN = FN;
 	Children[i].LN = LN;
 	Children[i].age = a;
+
+	Children.push_back(child);
 }
 
-char printMenu();
-void addFamily(vector<Family*> list);
-void printAll(vector<Family*> list);
-void printFamily(vector<Family*> list, char * n);
-void deleteFamily(vector<Family*> list, char * n);
