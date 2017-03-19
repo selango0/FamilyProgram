@@ -27,8 +27,8 @@ public:
 	
 	void setName(char[30]);
 	char * getName();
-	char * getParents();
-	char * getChildren();
+	Person * getParents();
+	Person * getChildren();
 	void setParent(char [], char [], int, int);
 	void setChildren(char [], char [], int, int);
 };
