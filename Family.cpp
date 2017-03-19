@@ -13,7 +13,7 @@ char* Family::getName() {
 }
 Person Family::getParents()
 {
-	return Parents;
+	return Parent;
 }
 Person Family::getChildren() {
 	return Children;
