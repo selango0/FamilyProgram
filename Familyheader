@@ -10,26 +10,24 @@
 using namespace std;
 
 struct Person {
-	char* FN; 
-	char* LN;
+	char firstName[30];
+	char lastName[30];
 	int age;
 };
 
 class Family
 {
 private:
-	char* name;
+	char name[30];
 	Person Parent[2];
-	Person Children[30];
+	Person Children[10];
 	
 	
 public:
-	//Family(a, int b);
-	void setName(char* n);
+	
+	void setName(char[30]);
 	char * getName();
-	Person getParents();
-	Person getChildren();
-	void setParent(char FN[], char LN[], int a, int i);
-	void setChildren(char FN[], char LN[], int a, int i);
+	void setParent(char [], char [], int, int);
+	void setChildren(char [], char [], int, int);
 };
 #endif
