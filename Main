@@ -1,3 +1,4 @@
+
 #include "Family.h"
 #include<iostream>
 #include <vector>
@@ -44,7 +45,7 @@ int main()
 
 		case 3:
 		{
-			name.clear();
+			
 			cout << "Enter Family Last name: ";
 			cin.ignore(100, '\n');
 			cin >> name;
@@ -80,8 +81,8 @@ int main()
 			cout << "\nFamily #: " << (i + 1);
 			cout << "\nName: " << myList[i].getName();
 
-			vector<Person> parents = myList[i].getParents();
-			vector<Person> children = myList[i].getChildren();
+			Person parents = myList[i].getParents();
+			Person children = myList[i].getChildren();
 
 			for (int j = 0; j < myList[i].getParents().size(); j++) {
 				cout << "\nParent " << j + 1 << endl;
@@ -97,16 +98,16 @@ int main()
 		}
 	}
 	void printFamily(vector <Family> &myList, char * n) {
-		for (? ? )
+		for (int i = 0; i < myList.size(); i++)
 		{
 
 			cout << "\nFamily #: " << (i + 1);
 			cout << "\nName: " << myList[i].getName();
 
-			vector<Person> parents = myList[i].getParents();
-			vector<Person> children = myList[i].getChildren();
+			Parents = myList[i].getName();
+			Children = myList[i].getChildren();
 
-			for (int j = 0; j < myList[i].getParents().size(); j++) {
+			for (int j = 0; j < myList[i].size(); j++) {
 				cout << "\nParent " << j + 1 << endl;
 				cout << "\nName " << parents[j].FN << " " << parents[j].LN << endl;
 				cout << "\nAge: " << parents[j].age << endl;
@@ -123,13 +124,13 @@ int main()
 	}
 void deleteFamily(vector <Family> &myList, char * n) {
 	
-	//for loop to interate through the list and find name
+	for (vector<Family> &myList )
 	myList.erase(myList.begin() + name); 
 
 
 	cout << "Not found" << endl;
 }
-void addFamily(vector <Family> myList) {
+void addFamily(vector <Family> &myList) {
 
 	Person* p = new Person;
 	Family* f = new Family;
@@ -157,7 +158,7 @@ void addFamily(vector <Family> myList) {
 		cout << "Enter Parent Age :";
 		cin.ignore(100, '\n');
 		cin >> age;
-		f->setParent(fname, lname, age);
+		f->setParent(fname, lname, age, i);
 	}
 	cout << "Enter Number of Child :";
 	cin >> numOfP;
@@ -174,9 +175,9 @@ void addFamily(vector <Family> myList) {
 		cout << "Enter Child Age :";
 		cin.ignore(100, '\n'); 
 		cin >> age;
-		f->setChildren(fname, lname, age);
+		f->setChildren(fname, lname, age, i);
 	}
-	myList.push_back(*f); 
+	
 }
 
 void printMenu() {
