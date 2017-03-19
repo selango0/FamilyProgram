@@ -8,102 +8,156 @@ using namespace std;
 
 void printMenu();
 int getInput();
+void addFamily(vector<Family> &mylist);
+void printAll(vector<Family> &mylist);
+void printFamily(vector<Family> &mylist, char * n);
+void deleteFamily(vector<Family> &mylist, char * n);
+
 int main()
 {
-	vector<Family*> mylist;
+	vector<Family> mylist;
 	bool fin = false;
 	int selection;
-		
+
 	do
 	{
+		char* name;
 		printMenu();
 		selection = getInput();
 
 		switch (selection)
 		{
 		case 1:
+		{
 			addFamily(mylist);
 			break;
-
+		}
 
 		case 2:
-			char* name;
+		{
 			cout << "Enter the Name to Delete: ";
+			cin.ignore(100, '\n');
 			cin >> name;
 			deleteFamily(myList, name);
 			break;
+		}
 
 		case 3:
-			char* name;
+		{
+			name.clear();
 			cout << "Enter Family Last name: ";
+			cin.ignore(100, '\n');
 			cin >> name;
 			printFamily(mylist, name);
 			break;
+		}
 
 		case 4:
+		{
 			printAll(mylist);
 			break;
+		}
 
 		case 5:
+		
 			if (!myList.empty())
 			{
 				cout << myList[0].getName() << " says bye!\n";
 			}
 			fin = true;
 			break;
+
 		}
+		} while (1);
 
 		return 0;
 	}
 
-void printAll(vector<Family*> list) {
-	for (size_t i = 0; i < myList.size(); i++)
-	{
-		cout << "\nFamily #: " << i;
-		cout << "\nName: " << myList[i].getName();
-		cout << "\nAge: " << myList[i].getAge() << endl << endl;
+
+	void printAll(vector<Family> myList) {
+		for (size_t i = 0; i < myList.size(); i++)
+		{
+			cout << "\nFamily #: " << (i + 1);
+			cout << "\nName: " << myList[i].getName();
+
+			vector<Person> parents = myList[i].getParents();
+			vector<Person> children = myList[i].getChildren();
+
+			for (int j = 0; j < myList[i].getParents().size(); j++) {
+				cout << "\nParent " << j + 1 << endl;
+				cout << "\nName " << parents[j].FN << " " << parents[j].LN << endl;
+				cout << "\nAge: " << parents[j].age << endl;
+			}
+			for (int j = 0; j < children.size(); j++) {
+				cout << "\nChild " << j + 1 << endl;
+				cout << "\nName " << children[j].FN << " " << children[j].LN << endl;
+				cout << "\nAge: " << children[j].age << endl;
+
+			}
+		}
 	}
-	
-}
-void printFamily(vector <Family*> list, char * n) {
-	
+	void printFamily(vector <Family> &myList, char * n) {
+		for (? ? )
+		{
 
-			cout << "Name: " << (*it)->getName() << endl;
-			
-		
-	//if wrong name
-	cout << "Not found" << endl;
+			cout << "\nFamily #: " << (i + 1);
+			cout << "\nName: " << myList[i].getName();
 
-void deleteFamily(vector <Family*> list, char * n) {
+			vector<Person> parents = myList[i].getParents();
+			vector<Person> children = myList[i].getChildren();
+
+			for (int j = 0; j < myList[i].getParents().size(); j++) {
+				cout << "\nParent " << j + 1 << endl;
+				cout << "\nName " << parents[j].FN << " " << parents[j].LN << endl;
+				cout << "\nAge: " << parents[j].age << endl;
+			}
+			for (int j = 0; j < children.size(); j++) {
+				cout << "\nChild " << j + 1 << endl;
+				cout << "\nName " << children[j].FN << " " << children[j].LN << endl;
+				cout << "\nAge: " << children[j].age << endl;
+
+			}
+		}
+
+		cout << "Not found" << endl;
+	}
+void deleteFamily(vector <Family> &myList, char * n) {
 	
-
+	//for loop to interate through the list and find name
 	myList.erase(myList.begin() + name); 
 
 
 	cout << "Not found" << endl;
 }
-void addFamily(vector <Family*> list) {
+void addFamily(vector <Family> myList) {
 
 	Person* p = new Person;
 	Family* f = new Family;
 	char* name;
 	int numOfP;
+
 	cout << "Enter Name :";
+	cin.ignore(100, '\n');
 	cin >> name;
 	f->setName(name);
+
 	cout << "Enter Number of Parent :";
 	cin >> numOfP;
+
 	for (int i = 0;i<numOfP;i++) {
 		char* fname;
 		char* lname;
 		int age;
 		cout << "Enter Parent First Name :";
+		cin.ignore(100, '\n');
 		cin >> fname;
 		cout << "Enter Parent Last Name :";
+		cin.ignore(100, '\n');
 		cin >> lname;
 		cout << "Enter Parent Age :";
+		cin.ignore(100, '\n');
 		cin >> age;
-		f->setParent(fname, lname, age, i);
+		f->setParent(fname, lname, age);
 	}
 	cout << "Enter Number of Child :";
 	cin >> numOfP;
@@ -112,14 +166,17 @@ void addFamily(vector <Family*> list) {
 		char* lname;
 		int age;
 		cout << "Enter Child First Name :";
+		cin.ignore(100, '\n'); 
 		cin >> fname;
 		cout << "Enter Child Last Name :";
+		cin.ignore(100, '\n'); 
 		cin >> lname;
 		cout << "Enter Child Age :";
+		cin.ignore(100, '\n'); 
 		cin >> age;
-		f->setChildren(fname, lname, age, i);
+		f->setChildren(fname, lname, age);
 	}
-	myList.push_back(f); //not sure if this is right
+	myList.push_back(*f); 
 }
 
 void printMenu() {
