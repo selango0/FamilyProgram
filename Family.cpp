@@ -12,6 +12,14 @@ char* Family::getName() {
 	return name;
 }
 
+char* Family::getParents() {
+	return Parent;
+}
+
+char* Family::getChildren() {
+	return Children;
+}
+
 void Family::setParent(char FN[], char LN[], int age, int index) {
 	strcpy_s(Parent[index].firstName, 29, FN);
 	strcpy_s(Parent[index].lastName, 29, LN);
