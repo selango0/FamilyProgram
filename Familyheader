@@ -19,13 +19,18 @@ class Family
 {
 private:
 	char* name;
-	Person Parent[2];
-	Person Children[30];
+	//Person Parent[2];
+	//Person Children[30];
+	vector<Person> Parent;
+	vector<Person> Children;
 public:
 	//Family(a, int b);
 	void setName(char* n);
 	char * getName();
-	void setParent(char FN[], char LN[], int a, int i);
-	void setChildren(char FN[], char LN[], int a, int i);
+	vector<Person>getParents();
+	vector<Person>getChildren();
+	void setParent(char FN[], char LN[], int a);
+	void setChildren(char FN[], char LN[], int a;
 };
 #endif
+
