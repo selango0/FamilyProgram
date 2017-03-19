@@ -4,31 +4,22 @@
 
 using namespace std;
 
-void Family::setName(char n[]) {
-	name = n;
+void Family::setName(char n[30]) {
+	strcpy_s(name, 29, n);
 }
 
 char* Family::getName() {
 	return name;
 }
-Person Family::getParents()
-{
-	return Parent;
-}
-Person Family::getChildren() {
-	return Children;
-}
-void Family::setParent(char FN[], char LN[], int a, int i) {
-	Parent[i].FN = FN;
-	Parent[i].LN = LN;
-	Parent[i].age = a;
-}
-void Family::setChildren(char FN[], char LN[], int a, int i) {
-	Person child;
-	Children[i].FN = FN;
-	Children[i].LN = LN;
-	Children[i].age = a;
 
-	//Children.push_back(child);
+void Family::setParent(char FN[], char LN[], int age, int index) {
+	strcpy_s(Parent[index].firstName, 29, FN);
+	strcpy_s(Parent[index].lastName, 29, LN);
+	Parent[index].age = age;
+}
+void Family::setChildren(char FN[], char LN[], int age, int index) {
+	strcpy_s(Children[index].firstName, 29, FN);
+	strcpy_s(Children[index].lastName, 29, LN);
+	Children[index].age = age;
 }
 
